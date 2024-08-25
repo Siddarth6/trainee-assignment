@@ -1,0 +1,103 @@
+{
+	"categories": [
+		{
+			"id": 1,
+			"name": "CSPM Executive Dashboard",
+			"widgets": [
+				{
+					"id": 1,
+					"name": "Compliance Overview",
+					"text": "Shows the compliance status across all cloud resources.",
+					"chartData": {
+						"labels": ["Compliant", "Non-Compliant"],
+						"data": [71, 29]
+					}
+				},
+				{
+					"id": 2,
+					"name": "Risk Assessment",
+					"text": "Displays risk levels of different cloud services.",
+					"chartData": {
+						"labels": ["Low Risk", "Medium Risk", "High Risk"],
+						"data": [50, 30, 20]
+					}
+				},
+				{
+					"id": 3,
+					"name": "Alerts Summary",
+					"text": "Summarizes all security alerts and their current status.",
+					"chartData": {
+						"labels": ["Resolved", "Unresolved"],
+						"data": [40, 60]
+					}
+				},
+				{
+					"id": 4,
+					"name": "Top Vulnerabilities",
+					"text": "Lists the top vulnerabilities detected in the cloud infrastructure.",
+					"chartData": {
+						"labels": ["Critical", "High", "Medium", "Low"],
+						"data": [10, 15, 25, 50]
+					}
+				}
+			]
+		},
+		{
+			"id": 2,
+			"name": "Cloud Compliance Dashboard",
+			"widgets": [
+				{
+					"id": 5,
+					"name": "Policy Violations",
+					"text": "Tracks violations against defined cloud policies.",
+					"chartData": {
+						"labels": ["Violation", "No Violation"],
+						"data": [5, 95]
+					}
+				},
+				{
+					"id": 6,
+					"name": "Remediation Status",
+					"text": "Shows the progress of ongoing remediation activities.",
+					"chartData": {
+						"labels": ["Completed", "In Progress", "Not Started"],
+						"data": [60, 30, 10]
+					}
+				}
+			]
+		},
+		{
+			"id": 3,
+			"name": "Security Monitoring Dashboard",
+			"widgets": [
+				{
+					"id": 7,
+					"name": "Intrusion Detection",
+					"text": "Monitors suspicious activities within the cloud environment.",
+					"chartData": {
+						"labels": ["Intrusions Detected", "No Intrusions"],
+						"data": [15, 85]
+					}
+				},
+				{
+					"id": 8,
+					"name": "Log Analysis",
+					"text": "Analyzes logs for potential security issues.",
+					"chartData": {
+						"labels": ["Issues Found", "No Issues"],
+						"data": [10, 90]
+					}
+				},
+				{
+					"id": 9,
+					"name": "Threat Intelligence",
+					"text": "Provides information on emerging threats related to cloud infrastructure.",
+					"chartData": {
+						"labels": ["New Threats", "Known Threats"],
+						"data": [5, 95]
+					}
+				}
+			]
+		}
+	]
+}
