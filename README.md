@@ -12,21 +12,21 @@ Download the files directly or clone the repo to your device.
 
 Navigate to the /trainee-assignment directory.
 
-### 'cd trainee-assignment'
+### `cd trainee-assignment`
 
 ## Step 3
 
 Install all the necessary libraries
 
-### 'npm install'
+### `npm install`
 
 ## Step 4
 
 Run the program using npm
 
-### 'npm start'
+### `npm start`
 
 ## JSON
 
-This is a dynamic dashboard using which you can visualize any .json file you have.
-Rename your json file as "mockData.json" and place it in the /trainee-assignment/public/data/ folder.
+##This is a dynamic dashboard using which you can visualize any .json file you have.
+##Rename your json file as "mockData.json" and place it in the /trainee-assignment/public/data/ folder.
