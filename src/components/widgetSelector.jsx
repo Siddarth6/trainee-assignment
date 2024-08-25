@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-
 import { useTheme } from "@emotion/react";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -8,6 +7,7 @@ import {
 	Drawer,
 	FormControlLabel,
 	IconButton,
+	InputBase,
 	List,
 	ListItem,
 	Tab,
@@ -22,6 +22,7 @@ const WidgetSelector = ({
 	onClose,
 	onWidgetChange,
 	selectedWidgets,
+	searchQuery,
 }) => {
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
@@ -30,6 +31,7 @@ const WidgetSelector = ({
 	const [localSelectedWidgets, setLocalSelectedWidgets] = useState({});
 	const [tabValue, setTabValue] = useState(0);
 	const [mockData, setMockData] = useState(null);
+	const [localSearchQuery, setLocalSearchQuery] = useState("");
 
 	useEffect(() => {
 		fetch("/data/mockData.json")
@@ -48,6 +50,10 @@ const WidgetSelector = ({
 			.catch((error) => console.error("Error loading JSON data:", error));
 	}, [selectedWidgets]);
 
+	useEffect(() => {
+		setLocalSearchQuery(searchQuery || "");
+	}, [searchQuery]);
+
 	const handleCheckboxChange = (event) => {
 		const { name, checked } = event.target;
 		setLocalSelectedWidgets((prevState) => {
@@ -61,9 +67,23 @@ const WidgetSelector = ({
 		setTabValue(newValue);
 	};
 
+	const handleSearchChange = (event) => {
+		setLocalSearchQuery(event.target.value);
+	};
+
 	const renderWidgets = () => {
 		if (!mockData) return null;
-		return mockData.categories[tabValue].widgets.map((widget) => (
+
+		const widgetsToDisplay = mockData.categories[tabValue].widgets.filter(
+			(widget) => {
+				const widgetName = widget.name || "";
+				return widgetName
+					.toLowerCase()
+					.includes(localSearchQuery.toLowerCase());
+			}
+		);
+
+		return widgetsToDisplay.map((widget) => (
 			<ListItem key={widget.id}>
 				<FormControlLabel
 					control={
@@ -118,16 +138,46 @@ const WidgetSelector = ({
 				<Typography variant="h6" sx={{ mt: 2 }}>
 					Personalize your dashboard by adding the following widgets
 				</Typography>
-				<Tabs
-					value={tabValue}
-					onChange={handleTabChange}
-					sx={{ borderBottom: 1, borderColor: "divider", mt: 2 }}
+				{/* Search Input */}
+				<Box
+					sx={{
+						display: "flex",
+						backgroundColor: colors.gray[800],
+						borderRadius: "4px",
+						mt: 2,
+						p: 1,
+					}}
 				>
-					{mockData &&
-						mockData.categories.map((category) => (
-							<Tab key={category.id} label={category.name} />
-						))}
-				</Tabs>
+					<InputBase
+						sx={{ ml: 2, flex: 1 }}
+						placeholder="Search Widgets..."
+						value={localSearchQuery}
+						onChange={handleSearchChange}
+					/>
+				</Box>
+				{/* Scrollable Tabs */}
+				<Box
+					sx={{
+						overflowX: "auto",
+						mt: 2,
+						whiteSpace: "nowrap",
+						borderBottom: 1,
+						borderColor: "divider",
+					}}
+				>
+					<Tabs
+						value={tabValue}
+						onChange={handleTabChange}
+						sx={{
+							minWidth: "max-content",
+						}}
+					>
+						{mockData &&
+							mockData.categories.map((category) => (
+								<Tab key={category.id} label={category.name} />
+							))}
+					</Tabs>
+				</Box>
 				<Box sx={{ mt: 2 }}>
 					<List>{renderWidgets()}</List>
 				</Box>

@@ -1,28 +1,22 @@
-/* eslint-disable no-unused-vars */
 import AddIcon from "@mui/icons-material/Add";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import LoopIcon from "@mui/icons-material/Loop";
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, Button, IconButton, useTheme } from "@mui/material";
-import InputBase from "@mui/material/InputBase";
+import { Box, Button, IconButton, InputBase, useTheme } from "@mui/material";
 import React, { useContext, useState } from "react";
 import CustomizedMenus from "../../components/customMenu";
-import WidgetSelector from "../../components/widgetSelector";
 import { ColorModeContext, tokens } from "../../themes";
 
 const Topbar = () => {
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
 	const colorMode = useContext(ColorModeContext);
-	const [isWidgetSelectorOpen, setIsWidgetSelectorOpen] = useState(false);
 
-	const handleOpenWidgetSelector = () => {
-		setIsWidgetSelectorOpen(true);
-	};
+	const [searchQuery, setSearchQuery] = useState("");
 
-	const handleCloseWidgetSelector = () => {
-		setIsWidgetSelectorOpen(false);
+	const handleSearchChange = (event) => {
+		setSearchQuery(event.target.value);
 	};
 
 	return (
@@ -41,7 +35,9 @@ const Topbar = () => {
 				<InputBase
 					sx={{ ml: 2, flex: 1 }}
 					placeholder="Search Anything..."
-					border="5px"
+					value={searchQuery}
+					onChange={handleSearchChange}
+					inputProps={{ "aria-label": "search" }}
 				/>
 			</Box>
 			<Box display="flex" justifyContent="right" alignItems="center" gap={1}>
@@ -72,7 +68,6 @@ const Topbar = () => {
 				<Button
 					variant="outlined"
 					endIcon={<AddIcon />}
-					onClick={handleOpenWidgetSelector}
 					sx={{
 						border: "1px solid",
 						borderColor:
@@ -90,10 +85,6 @@ const Topbar = () => {
 				>
 					Add Widget
 				</Button>
-				<WidgetSelector
-					isOpen={isWidgetSelectorOpen}
-					onClose={handleCloseWidgetSelector}
-				/>
 				<Button
 					display="flex"
 					variant="outlined"

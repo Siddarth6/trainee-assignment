@@ -152,7 +152,7 @@ const WidgetBox = () => {
 			{!selectedWidget && (
 				<Button
 					variant="outlined"
-					endIcon={<AddIcon />}
+					startIcon={<AddIcon />}
 					onClick={handleOpenWidgetSelector}
 					sx={{
 						border: "1px solid",
