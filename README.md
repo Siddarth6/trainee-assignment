@@ -1,6 +1,6 @@
 # Assignment for Front-End Trainee position
 
-This project was made using React.js, Material UI and recharts.
+This project was made using React.js, Material UI and recharts. This is a completely dynamic dashboard which adapt to the json file provided.
 
 ## Step 1
 
