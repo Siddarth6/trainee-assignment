@@ -28,5 +28,5 @@ Run the program using npm
 
 ## JSON
 
-## This is a dynamic dashboard using which you can visualize any .json file you have.
-## Rename your json file as "mockData.json" and place it in the /trainee-assignment/public/data/ folder.
+This is a dynamic dashboard using which you can visualize any json file you have.  
+Rename your json file as "mockData.json" and place it in the /trainee-assignment/public/data/ folder.
